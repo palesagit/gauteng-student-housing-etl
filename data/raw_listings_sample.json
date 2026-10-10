@@ -1,0 +1,53 @@
+[
+  {
+    "listing_id": "RES-UP-001",
+    "title": "TuksRes Hatfield Plaza Student Residence",
+    "university_partner": "University of Pretoria",
+    "target_campus": "Hatfield Campus",
+    "suburb": "Hatfield",
+    "city": "Pretoria",
+    "monthly_rent_raw": "R 4,800 / month",
+    "deposit_raw": "R 4,800",
+    "room_type": "Single Studio",
+    "nsfas_accredited_raw": "YES - Approved",
+    "distance_to_campus_km": 0.4,
+    "amenities": ["Free High-Speed WiFi", "24/7 Biometric Access", "Generator Backup Power", "Laundry Room", "Study Room"],
+    "address": "1122 Burnett St, Hatfield, Pretoria",
+    "contact_email": "info@hatfieldres.co.za",
+    "listing_url": "https://example.co.za/res/hatfield-001"
+  },
+  {
+    "listing_id": "RES-UP-002",
+    "title": "Sunnyside Student Heights",
+    "university_partner": "University of Pretoria",
+    "target_campus": "Hatfield Campus",
+    "suburb": "Sunnyside",
+    "city": "Pretoria",
+    "monthly_rent_raw": "R3500pm",
+    "deposit_raw": "R 3,500",
+    "room_type": "2-Bedroom Sharing",
+    "nsfas_accredited_raw": "Accredited",
+    "distance_to_campus_km": 1.8,
+    "amenities": ["Uncapped WiFi", "CCTV Cameras", "Communal Kitchen", "Near Areyeng Bus Stop"],
+    "address": "450 Leyds St, Sunnyside, Pretoria",
+    "contact_email": "sunnyside@studenthousing.co.za",
+    "listing_url": "https://example.co.za/res/sunnyside-002"
+  },
+  {
+    "listing_id": "RES-UP-003",
+    "title": "Hillcrest Luxury Student Apartments",
+    "university_partner": "University of Pretoria",
+    "target_campus": "Hillcrest Campus / LC de Villiers",
+    "suburb": "Hillcrest",
+    "city": "Pretoria",
+    "monthly_rent_raw": "R 6,200 / pm",
+    "deposit_raw": "R6200",
+    "room_type": "1-Bedroom Private",
+    "nsfas_accredited_raw": "NO",
+    "distance_to_campus_km": 0.6,
+    "amenities": ["High-Speed Fiber", "Solar Power Backup", "Gym Access", "24/7 Security Guard", "Swimming Pool"],
+    "address": "78 Lunnon Rd, Hillcrest, Pretoria",
+    "contact_email": "hillcrest@luxuryres.co.za",
+    "listing_url": "https://example.co.za/res/hillcrest-003"
+  }
+]
