@@ -49,5 +49,53 @@ class TestNsfasParsing:
 
     def test_parse_nsfas_status_none_input_returns_false(self):
         assert parse_nsfas_status(None) is False
+    
+class TestAmenityParsing:
+
+    def test_has_amenity_detects_wifi_keyword(self):
+        amenities = ["Free High-Speed WiFi", "Generator Backup Power"]
+        assert has_amenity(amenities, "wifi") is True
+
+    def test_has_amenity_detects_backup_power_keyword(self):
+        amenities = ["Solar Power Backup", "Biometric Access"]
+        assert has_amenity(amenities, "solar") is True
+
+    def test_has_amenity_returns_false_when_absent(self):
+        amenities = ["Laundry"]
+        assert has_amenity(amenities, "generator") is False
+
+
+class TestListingTransformation:
+
+    def test_transform_listing_valid_raw_record(self):
+        raw = {
+            "listing_id": "RES-TEST-01",
+            "title": "TuksRes Hatfield House",
+            "university_partner": "University of Pretoria",
+            "suburb": "Hatfield",
+            "city": "Pretoria",
+            "monthly_rent_raw": "R 4,500",
+            "nsfas_accredited_raw": "YES",
+            "amenities": ["Uncapped WiFi", "Generator Backup"],
+        }
+        res = transform_listing(raw)
+        assert res is not None
+        assert res["listing_id"] == "RES-TEST-01"
+        assert res["monthly_rent_zar"] == 4500.0
+        assert res["is_nsfas_accredited"] is True
+        assert res["has_wifi"] is True
+        assert res["has_backup_power"] is True
+
+    def test_transform_all_returns_pandas_dataframe(self):
+        raw = [{
+            "listing_id": "RES-TEST-02",
+            "title": "Sunnyside Digs",
+            "suburb": "Sunnyside",
+            "monthly_rent_raw": "R 3,200",
+        }]
+        df = transform_all(raw)
+        assert isinstance(df, pd.DataFrame)
+        assert len(df) == 1
+
 
 
