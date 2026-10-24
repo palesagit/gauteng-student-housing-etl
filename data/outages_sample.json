@@ -1,0 +1,10 @@
+[
+  {"outage_id": "PWR-001", "outage_type_raw": "Load shedding", "suburb": "Hatfield", "city": "Pretoria", "stage_raw": "Stage 4", "start_time": "2026-10-26T18:00:00", "duration_raw": "4 hours", "reason": "Generation shortfall"},
+  {"outage_id": "PWR-002", "outage_type_raw": "loadshedding", "suburb": "Braamfontein", "city": "Johannesburg", "stage_raw": "Stage 2", "start_time": "2026-10-26T20:00:00", "duration_raw": "2.5 hours", "reason": "Generation shortfall"},
+  {"outage_id": "PWR-003", "outage_type_raw": "Load shedding", "suburb": "Auckland Park", "city": "Johannesburg", "stage_raw": "Stage 4", "start_time": "2026-10-26T16:00:00", "duration_raw": "4 hrs", "reason": "Generation shortfall"},
+  {"outage_id": "WTR-001", "outage_type_raw": "Water outage", "suburb": "Braamfontein", "city": "Johannesburg", "stage_raw": null, "start_time": "2026-10-27T06:00:00", "duration_raw": "12 hours", "reason": "Burst pipe on main line"},
+  {"outage_id": "WTR-002", "outage_type_raw": "Water Outage", "suburb": "Sunnyside", "city": "Pretoria", "stage_raw": null, "start_time": "2026-10-27T08:00:00", "duration_raw": "24 hours", "reason": "Reservoir maintenance"},
+  {"outage_id": "WTR-003", "outage_type_raw": "Water shedding", "suburb": "Arcadia", "city": "Pretoria", "stage_raw": null, "start_time": "2026-10-27T05:00:00", "duration_raw": "6 hours", "reason": "Pump station repairs"},
+  {"outage_id": "WTR-004", "outage_type_raw": "Water outage", "suburb": "Hatfield", "city": "Pretoria", "stage_raw": null, "start_time": "2026-10-28T09:00:00", "duration_raw": "3 hours", "reason": "Valve replacement"},
+  {"outage_id": "BAD-001", "outage_type_raw": "Load shedding", "city": "Pretoria", "stage_raw": "Stage 1", "start_time": "2026-10-26T10:00:00", "duration_raw": "2 hours", "reason": "This record has no suburb on purpose, so validation drops it"}
+]
