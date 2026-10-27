@@ -66,3 +66,9 @@ The unit test suite in [`tests/test_transform.py`](test_transform.py) covers:
 - **NSFAS Accreditation Parsing (`TestNsfasParsing`)**: Verifies normalization of accreditation status text into Boolean flags.
 - **Amenity Detection (`TestAmenityParsing`)**: Tests detection of Wi-Fi and load-shedding backup power (Generator / Solar).
 - **Listing Transformation (`TestListingTransformation`)**: Validates full record transformation and conversion to Pandas DataFrame.
+- **Outage Parsing (`TestOutageParsing`)**: Verifies cleaning of outage type ("Load shedding" / "Water outage"), stage ("Stage 4") and duration ("2.5 hours", "4 hrs").
+- **Outage Extract (`TestOutageExtract`)**: Checks that outage records with no suburb are dropped.
+- **Outage Join (`TestOutageJoin`)**: Checks outage counts and High / Medium / Low risk are added to each listing by suburb.
+- **Load (`TestLoad`)**: Writes a DataFrame into a small in-memory test database (no PostgreSQL needed).
+- **Student Queries (`TestStudentQueries`)**: Runs every search in `sql/student_queries.sql` on a small test database and checks the results (budget, NSFAS, distance, backup power, outage risk).
+- **WiFi Flag (`TestWifiFlag`)**: Checks that "High-Speed Fiber" counts as internet.
