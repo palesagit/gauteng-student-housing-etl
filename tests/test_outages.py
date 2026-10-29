@@ -21,6 +21,8 @@ from transform_outages import (
     transform_outages,
     risk_level,
     add_outage_info,
+    suburb_key,
+    find_unmatched_suburbs,
 )
 from load import load_to_postgres
 
@@ -84,6 +86,29 @@ class TestOutageJoin:
         result = add_outage_info(listings, transform_outages(load_local_outages()))
         assert result.iloc[0]["outage_risk"] == "Low"
         assert result.iloc[0]["outage_hours"] == 0
+
+
+class TestSuburbMatching:
+
+    def test_suburb_key_ignores_case_and_extra_spaces(self):
+        names = pd.Series(["  Auckland   Park ", "HATFIELD"])
+        assert list(suburb_key(names)) == ["auckland park", "hatfield"]
+
+    def test_misspelled_outage_suburb_is_reported(self):
+        listings = pd.DataFrame([{"suburb": "Hatfield"}])
+        outages = pd.DataFrame([{"suburb": "Hatfeld", "outage_type": "water", "duration_hours": 3.0}])
+        assert find_unmatched_suburbs(listings, outages) == ["Hatfeld"]
+
+    def test_matching_suburbs_are_not_reported(self):
+        listings = pd.DataFrame([{"suburb": "Hatfield"}])
+        outages = pd.DataFrame([{"suburb": "hatfield ", "outage_type": "water", "duration_hours": 3.0}])
+        assert find_unmatched_suburbs(listings, outages) == []
+
+    def test_extra_spaces_still_count_the_outage(self):
+        listings = pd.DataFrame([{"suburb": "Auckland Park"}])
+        outages = pd.DataFrame([{"suburb": "Auckland  Park", "outage_type": "water", "duration_hours": 5.0}])
+        result = add_outage_info(listings, outages)
+        assert result.iloc[0]["water_outages"] == 1
 
 
 class TestLoad:
