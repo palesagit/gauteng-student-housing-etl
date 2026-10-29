@@ -66,18 +66,40 @@ def risk_level(total_hours: float) -> str:
     return "Low"
 
 
+def suburb_key(names: pd.Series) -> pd.Series:
+    """Make suburb names easy to match: 'Auckland  Park ' -> 'auckland park'."""
+    return names.str.strip().str.lower().str.replace(r"\s+", " ", regex=True)
+
+
+def find_unmatched_suburbs(listings: pd.DataFrame, outages: pd.DataFrame) -> list[str]:
+    """
+    Return outage suburbs that match NO listing.
+    Usually this means a spelling difference, e.g. 'Hatfeld' instead of 'Hatfield'.
+    """
+    if outages.empty:
+        return []
+    listing_keys = set(suburb_key(listings["suburb"]))
+    outage_keys = suburb_key(outages["suburb"])
+    unmatched = outages.loc[~outage_keys.isin(listing_keys), "suburb"]
+    return sorted(set(unmatched))
+
+
 def add_outage_info(listings: pd.DataFrame, outages: pd.DataFrame) -> pd.DataFrame:
     """
     Add outage columns to each listing, matched by suburb:
     power_outages, water_outages, outage_hours and outage_risk.
     """
     result = listings.copy()
-    result["suburb_key"] = result["suburb"].str.lower()  # so 'Hatfield' == 'hatfield'
+    result["suburb_key"] = suburb_key(result["suburb"])  # so 'Hatfield' == 'hatfield'
+
+    unmatched = find_unmatched_suburbs(listings, outages)
+    if unmatched:
+        logger.warning(f"⚠️  Outage suburbs with no matching listing (check spelling): {unmatched}")
 
     summary = pd.DataFrame(columns=["suburb_key", "power_outages", "water_outages", "outage_hours"])
     if not outages.empty:
         o = outages.copy()
-        o["suburb_key"] = o["suburb"].str.lower()
+        o["suburb_key"] = suburb_key(o["suburb"])
         summary = o.groupby("suburb_key").agg(
             power_outages=("outage_type", lambda t: (t == "loadshedding").sum()),
             water_outages=("outage_type", lambda t: (t == "water").sum()),
