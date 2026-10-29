@@ -72,3 +72,4 @@ The unit test suite in [`tests/test_transform.py`](test_transform.py) covers:
 - **Load (`TestLoad`)**: Writes a DataFrame into a small in-memory test database (no PostgreSQL needed).
 - **Student Queries (`TestStudentQueries`)**: Runs every search in `sql/student_queries.sql` on a small test database and checks the results (budget, NSFAS, distance, backup power, outage risk).
 - **WiFi Flag (`TestWifiFlag`)**: Checks that "High-Speed Fiber" counts as internet.
+- **Contact Details (`TestContactDetails`)**: Checks that every student search also returns the contact email and listing link.
