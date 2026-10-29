@@ -70,6 +70,20 @@ class TestStudentQueries:
         assert result["places"].sum() == 6
 
 
+class TestContactDetails:
+
+    def test_every_search_shows_contact_details(self):
+        for query in read_queries()[:6]:
+            result = pd.read_sql(query, build_test_database())
+            assert "contact_email" in result.columns
+            assert "listing_url" in result.columns
+
+    def test_contact_email_is_correct_for_hatfield(self):
+        result = pd.read_sql(read_queries()[0], build_test_database())
+        hatfield = result[result["suburb"] == "Hatfield"].iloc[0]
+        assert hatfield["contact_email"] == "info@hatfieldres.co.za"
+
+
 class TestWifiFlag:
 
     def test_fiber_counts_as_wifi(self):
