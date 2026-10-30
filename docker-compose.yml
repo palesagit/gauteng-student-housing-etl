@@ -1,0 +1,19 @@
+# Starts a PostgreSQL database for the pipeline.
+#   docker compose up -d      (start it)
+#   docker compose down       (stop it)
+# It uses the same values as your .env file (or the defaults below).
+services:
+  db:
+    image: postgres:16
+    container_name: housing-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-housing_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-housing_pass}
+      POSTGRES_DB: ${POSTGRES_DB:-gauteng_housing_db}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - housing_data:/var/lib/postgresql/data
+
+volumes:
+  housing_data:
