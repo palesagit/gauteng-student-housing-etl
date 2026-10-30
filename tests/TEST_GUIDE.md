@@ -73,3 +73,5 @@ The unit test suite in [`tests/test_transform.py`](test_transform.py) covers:
 - **Student Queries (`TestStudentQueries`)**: Runs every search in `sql/student_queries.sql` on a small test database and checks the results (budget, NSFAS, distance, backup power, outage risk).
 - **WiFi Flag (`TestWifiFlag`)**: Checks that "High-Speed Fiber" counts as internet.
 - **Contact Details (`TestContactDetails`)**: Checks that every student search also returns the contact email and listing link.
+- **Suburb Matching (`TestSuburbMatching`)**: Checks that suburb names match even with different capitals or extra spaces, and that a misspelled outage suburb is reported.
+- **Student Search (`TestBuildQuery`, `TestSearch`)**: Tests the SQL built by `src/search.py` and the results for budget, NSFAS, backup power and outage risk searches.
